@@ -1,5 +1,4 @@
 ## 💬 ChatApp
-
 ChatApp is a modern real-time messaging application designed to provide seamless communication between users. It supports instant messaging, user presence indicators, and a clean, responsive interface for both desktop and mobile devices.
 
 ## 🚀 Features
