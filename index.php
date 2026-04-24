@@ -18,6 +18,9 @@ $user = $conn->query("SELECT * FROM users WHERE id=$user_id")->fetch_assoc();
 <head>
     <meta charset="UTF-8">
     <title>Chat App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     <style>
         * {
@@ -163,6 +166,55 @@ $user = $conn->query("SELECT * FROM users WHERE id=$user_id")->fetch_assoc();
         .user-name:hover {
             color: #1877f2;
         }
+
+        body.dark {
+            background: #18191a;
+            color: #e4e6eb;
+        }
+
+        /* containers */
+        body.dark .users,
+        body.dark .chat-header,
+        body.dark .chat-input,
+        body.dark .top-bar {
+            background: #242526;
+            border-color: #3a3b3c;
+        }
+
+        /* sidebar text */
+        body.dark .users li {
+            color: #e4e6eb;
+        }
+
+        body.dark .users li:hover {
+            background: #3a3b3c;
+        }
+
+        /* messages */
+        body.dark .received {
+            background: #3a3b3c;
+            color: #e4e6eb;
+        }
+
+        body.dark .sent {
+            background: #1877f2;
+        }
+
+        /* inputs */
+        body.dark input {
+            background: #3a3b3c;
+            color: #e4e6eb;
+            border: 1px solid #555;
+        }
+
+        /* buttons */
+        body.dark .chat-input button {
+            background: #1877f2;
+        }
+
+        body.dark a {
+            color: #e4e6eb;
+        }
     </style>
 </head>
 
@@ -176,7 +228,14 @@ $user = $conn->query("SELECT * FROM users WHERE id=$user_id")->fetch_assoc();
                 <a href="profile.php?id=<?php echo $user_id; ?>" class="user-name">
                     <?php echo htmlspecialchars($user['name']); ?>
                 </a>
-                <a href="logout.php" class="logout">Logout</a>
+
+                <div>
+                    <button onclick="toggleDarkMode()" style="margin-right:10px; padding:5px 10px; border:none; border-radius:5px; cursor:pointer;">
+                        🌙
+                    </button>
+
+                    <a href="logout.php" class="logout">Logout</a>
+                </div>
             </div>
 
             <ul id="userList"></ul>
@@ -279,6 +338,27 @@ $user = $conn->query("SELECT * FROM users WHERE id=$user_id")->fetch_assoc();
 
         // Init
         loadUsers();
+
+
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark");
+
+            // save preference
+            if (document.body.classList.contains("dark")) {
+                localStorage.setItem("darkMode", "on");
+            } else {
+                localStorage.setItem("darkMode", "off");
+            }
+        }
+
+        // load saved mode
+        window.onload = function() {
+            loadUsers();
+
+            if (localStorage.getItem("darkMode") === "on") {
+                document.body.classList.add("dark");
+            }
+        };
     </script>
 
 </body>
