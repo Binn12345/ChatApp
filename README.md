@@ -12,7 +12,7 @@ ChatApp is a modern real-time messaging application designed to provide seamless
 - Secure data handling
 
 ## 🛠️ Tech Stack
-- Frontend: React / HTML / CSS / JavaScript
-- Backend: Node.js / Express
-- Database: MongoDB (or your preferred DB)
-- Real-time Engine: Socket.IO
+- Frontend: HTML / CSS / JavaScript
+- Backend: PHP
+- Database: SQLYog (or your preferred DB)
+- Real-time Engine: RealTime thru setInterval 1seconds
