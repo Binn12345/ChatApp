@@ -14,4 +14,4 @@ ChatApp is a modern real-time messaging application designed to provide seamless
 - Frontend: HTML / CSS / JavaScript
 - Backend: PHP
 - Database: SQLYog (or your preferred DB)
-- Real-time Engine: RealTime thru setInterval 1seconds
+- Real-time Engine: AJAX polling every 2–3 seconds
